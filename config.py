@@ -24,7 +24,6 @@ class Config:
 
 class DevelopmentConfig(Config):
     DEBUG = True
-    CONFIG_DIR = basedir
     LOGLEVEL = DEBUG
     DB_USER = os.getenv('DB_USER')
     DB_PASS = os.getenv('DB_PASS')
@@ -32,7 +31,6 @@ class DevelopmentConfig(Config):
 
 class ProductionConfig(Config):
     DEBUG = False
-    CONFIG_DIR = '/var/log/'
     LOGLEVEL = ''
     DB_USER = os.getenv('DB_USER')
     DB_PASS = os.getenv('DB_PASS')

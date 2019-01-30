@@ -8,23 +8,25 @@ import os
 from app import create_app
 from flask_script import Manager, Shell, Command, Option
 from pymongo import MongoClient
+from flask_moment import Moment
 
 
 app = create_app(os.getenv('FLASK_CONFIG') or 'default')
 app.debug = True
 
+moment = Moment(app)
 manager = Manager(app)
 
-'''# for mongodb use
+# for mongodb use
 mongo_url = ('mongodb://%s:%s@ds028310.mlab.com'
              ':28310/tudev_checkout' % (app.config['DB_USER'],
                                         app.config['DB_PASS']))
 client = MongoClient(mongo_url, connect=False)
-'''
 
 
 def make_shell_context():
     return dict(app=app)
+
 
 @manager.option('-h', '--host', dest='host', default='0.0.0.0')
 @manager.option('-p', '--port', dest='port', type=int, default=1337)
